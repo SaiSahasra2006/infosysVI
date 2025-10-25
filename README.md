@@ -1,82 +1,98 @@
-🎵 **VOLUME CONTROL USING HAND GESTURES**  
+# 🎵 Gesture-Based Volume Control using Hand Gestures
 
 ---
 
-🧠 **PROJECT OVERVIEW**  
+## 🧠 Project Overview
 
-This project demonstrates **contactless system volume control** using computer vision and hand-tracking technology. The system recognizes hand gestures in real-time and adjusts the computer volume based on the distance between the thumb and index finger. It uses **MediaPipe** for hand landmark detection and **OpenCV** to visualize hand gestures on the webcam feed.  
-
----
-
-🔍 **OBJECTIVE**  
-
-To develop a **gesture-based volume control system** that allows users to adjust their computer’s audio without touching any hardware. This provides a **hygienic, modern, and interactive** way to control volume.  
+This project demonstrates a **real-time, contactless volume control system** using **computer vision** and **hand gesture recognition**.  
+It utilizes **OpenCV** for webcam feed, **MediaPipe** for hand tracking, and **PyAutoGUI** for controlling system volume.  
+The application runs on a **Streamlit web interface**, showing live video feed, hand tracking visuals, and real-time volume metrics.
 
 ---
 
-⚙️ **TECHNOLOGIES USED**  
+## 🎯 Objective
 
-🐍 **Python**  
-📸 **OpenCV** — for real-time webcam capture and image processing  
-✋ **MediaPipe** — for detecting and tracking hand landmarks  
-🔊 **PyAutoGUI / OS module** — to control system volume  
-🖼️ **Tkinter & Pillow** — for GUI and displaying video feed  
+To create a **gesture-controlled system volume manager** that allows users to adjust the audio level **without touching hardware**, providing an **interactive and hygienic** experience.
 
 ---
 
-🧩 **PROJECT MODULES**  
+## ⚙️ Technologies Used
 
-1️⃣ **Webcam Input & Hand Detection**  
-- Captures live video from the webcam using OpenCV  
-- Detects hands and extracts 21 landmarks in real-time using MediaPipe  
-
-2️⃣ **Gesture Recognition & Distance Measurement**  
-- Tracks thumb tip and index fingertip positions  
-- Calculates the distance between these points  
-- Classifies gestures into: Open Hand, Pinch, and Closed Hand  
-
-3️⃣ **Volume Mapping & Control**  
-- Converts gesture distance into a volume level (0%–100%)  
-- Adjusts system volume dynamically  
-- Smooth transitions to prevent sudden jumps  
-
-4️⃣ **User Interface & Feedback**  
-- Displays hand landmarks and gestures on the video feed  
-- Shows real-time volume level via a progress bar and numeric display  
+| Technology | Purpose |
+|-------------|----------|
+| 🐍 **Python** | Core programming language |
+| 📸 **OpenCV** | Webcam video capture and frame processing |
+| ✋ **MediaPipe** | Hand landmark detection and tracking |
+| 🔊 **PyAutoGUI** | System volume control through simulated keypresses |
+| 🌐 **Streamlit** | Web-based graphical user interface |
+| 🖼️ **Pillow (PIL)** | Displaying processed images on Streamlit |
 
 ---
 
-📈 **WORKING PRINCIPLE**  
+## 🧩 Project Modules
 
-- The webcam captures a **live video feed**  
-- MediaPipe identifies **hand landmarks**  
-- Distance between thumb and index fingertips is measured  
-- Based on the distance:  
-  - 🤏 Pinch → Lower volume  
-  - ✋ Open hand → Higher volume  
-- A visual progress bar reflects the current volume level  
+### 1️⃣ Webcam Input & Hand Detection
+- Captures live video feed using OpenCV.
+- Detects hand landmarks using MediaPipe.
+- Draws connections between 21 detected hand points.
+
+### 2️⃣ Gesture Recognition & Distance Calculation
+- Identifies thumb tip (Landmark 4) and index fingertip (Landmark 8).
+- Calculates **Euclidean distance** between them.
+- Uses distance as input to map volume percentage.
+
+### 3️⃣ Volume Mapping & Control
+- Maps the distance range (20–200 px) to a **volume level (0–100%)**.
+- Increases/decreases volume using PyAutoGUI’s “volumeup” and “volumedown”.
+- Prevents flickering by adjusting only when change >5%.
+
+### 4️⃣ Streamlit Interface
+- Live webcam feed displayed on webpage.
+- **Start** and **Pause** buttons for user control.
+- Real-time metrics:
+  - Volume Level (%)
+  - Distance between fingertips (pixels)
+- Includes a **line chart** for volume history and a **progress bar** for distance visualization.
 
 ---
 
-💡 **FEATURES**  
+## 📈 Working Principle
 
-✅ Real-time hand detection and gesture recognition  
+1. The webcam captures real-time video.
+2. MediaPipe detects hand landmarks on each frame.
+3. The distance between thumb and index fingertips is measured.
+4. This distance is mapped to system volume level.
+5. Streamlit interface updates:
+   - Live feed with drawn hand landmarks.
+   - Volume & distance metrics.
+   - Visual progress bar and volume chart.
+
+---
+
+## 💡 Features
+
+✅ Real-time hand tracking  
+✅ Streamlit-based web UI  
 ✅ Contactless volume control  
-✅ Smooth and dynamic volume adjustment  
-✅ Visual feedback through GUI and progress bar  
-✅ Works with only a standard webcam  
-✅ Easily extendable for more gestures  
+✅ Smooth and dynamic volume scaling  
+✅ Visual feedback (chart + progress bar)  
+✅ Works on any system with a webcam  
 
 ---
 
-🧠 **FUTURE ENHANCEMENTS**  
+## 🚀 Future Enhancements
 
-- Gesture-based mute/unmute functionality  
-- Integration with media apps like YouTube or Spotify  
-- Support for multi-hand gestures for advanced controls  
-- AI-based gesture classification for improved accuracy  
+- Add **mute/unmute gesture**.  
+- Integrate with **media players** (Spotify, VLC, YouTube).  
+- Add **AI-based gesture classification** for accuracy.  
+- Enable **multi-hand gestures** for advanced control.  
+- Host as an **online web app**.
 
 ---
 
+## 🧠 How to Run
 
-
+### 🔧 Requirements
+Install dependencies:
+```bash
+pip install opencv-python mediapipe pyautogui streamlit pillow numpy
